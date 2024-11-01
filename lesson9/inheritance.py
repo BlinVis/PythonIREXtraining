@@ -22,10 +22,10 @@ class Dog(Animal):
 
 
 
-class Cat(Animal):
-    def sound(self):
-        print('Meow')
-    super().__init__(name)
+#class Cat(Animal):
+   # def sound(self):
+       # print('Meow')
+    #super().__init__(name)
 
 
 kafsha=Animal('animal name')
