@@ -50,22 +50,26 @@ class Adult(Person):
             return ('Normal weight')
         elif 24.9 <= bmi < 29.9:
             return ('Overweight')
-        elif bmi > 29.9:
+        else    :
             return ('Obese')
 
 class Child(Adult):
+    def calculate_bmi(self):
+        return (self.weight / (self.height ** 2))*1.3
+
     def get_bmi_category(self):
-        bmi = self.calculate_bmi()*1.3
+        bmi = self.calculate_bmi()
+
         if bmi < 14:
             return ('Underweight')
         elif 14 <= bmi < 18:
             return ('Normal weight')
         elif 18 <= bmi < 24:
             return ('Overweight')
-        elif bmi > 24:
+        else:
             return ('Obese')
 class BMIApp:
-    def __int__(self):
+    def __init__(self):
        self.people=[]
 
     def add_person(self,person):
