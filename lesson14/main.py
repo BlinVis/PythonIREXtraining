@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import csv
 df =pd.read_csv('avgIQpercountry.csv')
+print(df.info())
+
 
 
 filtered_df= df[df['Average IQ'] >=100]
