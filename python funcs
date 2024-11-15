@@ -1,0 +1,336 @@
+1. Pandas Functions
+Pandas is a data manipulation library that provides powerful tools for working with tabular data. Here are some of the most commonly used functions:
+
+1.1. read_csv()
+Syntax:
+
+python
+Copy code
+pandas.read_csv(filepath_or_buffer, sep=',', header='infer', index_col=None, dtype=None)
+Explanation: Reads a CSV file into a Pandas DataFrame. It’s one of the most common ways to load data from a CSV file.
+
+Example:
+
+python
+Copy code
+import pandas as pd
+df = pd.read_csv('data.csv')
+1.2. head()
+Syntax:
+
+python
+Copy code
+DataFrame.head(n=5)
+Explanation: Returns the first n rows of a DataFrame (default is 5 rows).
+
+Example:
+
+python
+Copy code
+df.head()  # Shows the first 5 rows of the DataFrame
+df.head(10)  # Shows the first 10 rows of the DataFrame
+1.3. tail()
+Syntax:
+
+python
+Copy code
+DataFrame.tail(n=5)
+Explanation: Returns the last n rows of a DataFrame (default is 5 rows).
+
+Example:
+
+python
+Copy code
+df.tail()  # Shows the last 5 rows of the DataFrame
+1.4. drop_duplicates()
+Syntax:
+
+python
+Copy code
+DataFrame.drop_duplicates(subset=None, keep='first', inplace=False)
+Explanation: Removes duplicate rows based on specified column(s). It keeps the first occurrence by default.
+
+Example:
+
+python
+Copy code
+df.drop_duplicates(subset='Name', keep='first', inplace=True)  # Drops duplicate rows based on the 'Name' column
+1.5. groupby()
+Syntax:
+
+python
+Copy code
+DataFrame.groupby(by)
+Explanation: Groups the DataFrame using a column (or columns). Useful for aggregation (e.g., sum, mean).
+
+Example:
+
+python
+Copy code
+df.groupby('Genre').agg({'Price': 'mean', 'User Rating': 'mean'})
+1.6. agg()
+Syntax:
+
+python
+Copy code
+DataFrame.agg(func, axis=0, *args, **kwargs)
+Explanation: Applies one or more aggregation functions to the DataFrame. This is often used in combination with groupby().
+
+Example:
+
+python
+Copy code
+df.groupby('Genre').agg({'Price': 'mean', 'User Rating': 'max'})
+1.7. sort_values()
+Syntax:
+
+python
+Copy code
+DataFrame.sort_values(by, axis=0, ascending=True, inplace=False)
+Explanation: Sorts the DataFrame by one or more columns.
+
+Example:
+
+python
+Copy code
+df.sort_values(by='User Rating', ascending=False)
+1.8. loc[] (Label-based indexing)
+Syntax:
+
+python
+Copy code
+DataFrame.loc[row_label, column_label]
+Explanation: Access a group of rows and columns by labels or a boolean array. It is used for label-based indexing.
+
+Example:
+
+python
+Copy code
+df.loc[0, 'Name']  # Access the 'Name' of the first row
+1.9. iloc[] (Position-based indexing)
+Syntax:
+
+python
+Copy code
+DataFrame.iloc[row_index, column_index]
+Explanation: Access rows and columns by integer positions (index-based).
+
+Example:
+
+python
+Copy code
+df.iloc[0, 1]  # Access the value at the first row and second column
+1.10. mean()
+Syntax:
+
+python
+Copy code
+DataFrame.mean(axis=0, skipna=True)
+Explanation: Returns the mean of the values in a DataFrame or Series.
+
+Example:
+
+python
+Copy code
+df['Price'].mean()  # Calculates the mean of the 'Price' column
+2. Streamlit Functions
+Streamlit is a library to create interactive web applications quickly. Below are some of the most commonly used functions:
+
+2.1. st.title()
+Syntax:
+
+python
+Copy code
+st.title('Your Title')
+Explanation: Displays a title at the top of the Streamlit app.
+
+Example:
+
+python
+Copy code
+st.title('Best Selling Books Analysis')
+2.2. st.write()
+Syntax:
+
+python
+Copy code
+st.write(data)
+Explanation: This function writes text, data, or charts to the app. It automatically detects the type of data (string, DataFrame, plot, etc.) and displays it.
+
+Example:
+
+python
+Copy code
+st.write('This is a description of the app.')
+st.write(df)  # Display a DataFrame
+2.3. st.subheader()
+Syntax:
+
+python
+Copy code
+st.subheader('Your Subtitle')
+Explanation: Displays a subheading below the main title.
+
+Example:
+
+python
+Copy code
+st.subheader('Top 10 Book Titles')
+2.4. st.metric()
+Syntax:
+
+python
+Copy code
+st.metric(label, value, delta=None)
+Explanation: Displays a metric with a value, and optionally a delta (change over time).
+
+Example:
+
+python
+Copy code
+st.metric('Total Books', 500, delta=+10)
+2.5. st.columns()
+Syntax:
+
+python
+Copy code
+col1, col2 = st.columns(2)
+Explanation: Creates a layout with multiple columns in the app. You can specify how many columns you want.
+
+Example:
+
+python
+Copy code
+col1, col2 = st.columns(2)
+with col1:
+    st.write('Left column content')
+with col2:
+    st.write('Right column content')
+2.6. st.bar_chart()
+Syntax:
+
+python
+Copy code
+st.bar_chart(data)
+Explanation: Displays a bar chart of the provided data. The data should be in a format that Streamlit can plot (e.g., DataFrame, Series).
+
+Example:
+
+python
+Copy code
+st.bar_chart(df['User Rating'])
+2.7. st.plotly_chart()
+Syntax:
+
+python
+Copy code
+st.plotly_chart(fig)
+Explanation: Displays a Plotly chart in the Streamlit app.
+
+Example:
+
+python
+Copy code
+import plotly.express as px
+fig = px.scatter(df, x='Name', y='Price')
+st.plotly_chart(fig)
+2.8. st.selectbox()
+Syntax:
+
+python
+Copy code
+st.selectbox('Select a book', options)
+Explanation: Displays a dropdown menu with the options you provide. The user can select one option.
+
+Example:
+
+python
+Copy code
+book = st.selectbox('Select a book', ['Book 1', 'Book 2', 'Book 3'])
+2.9. st.text_input()
+Syntax:
+
+python
+Copy code
+st.text_input('Enter some text')
+Explanation: Displays a text input field where the user can type in a string.
+
+Example:
+
+python
+Copy code
+user_input = st.text_input('Enter book title')
+3. Plotly Functions
+Plotly is a library for creating interactive plots and visualizations.
+
+3.1. px.bar()
+Syntax:
+
+python
+Copy code
+plotly.express.bar(data_frame, x, y, color=None, title=None)
+Explanation: Creates a bar chart. x is the data for the x-axis, and y is the data for the y-axis.
+
+Example:
+
+python
+Copy code
+import plotly.express as px
+fig = px.bar(df, x='Name', y='User Rating')
+fig.show()
+3.2. px.scatter()
+Syntax:
+
+python
+Copy code
+plotly.express.scatter(data_frame, x, y, color=None, title=None)
+Explanation: Creates a scatter plot. x and y are the data for the respective axes.
+
+Example:
+
+python
+Copy code
+fig = px.scatter(df, x='Price', y='User Rating')
+fig.show()
+3.3. px.pie()
+Syntax:
+
+python
+Copy code
+plotly.express.pie(data_frame, names, values, title=None)
+Explanation: Creates a pie chart. The names parameter defines the categories, and values defines the size of each slice.
+
+Example:
+
+python
+Copy code
+fig = px.pie(df, names='Genre', title='Genre Distribution')
+fig.show()
+3.4. px.line()
+Syntax:
+
+python
+Copy code
+plotly.express.line(data_frame, x, y, title=None)
+Explanation: Creates a line chart. Useful for plotting continuous data over time.
+
+Example:
+
+python
+Copy code
+fig = px.line(df, x='Year', y='Sales')
+fig.show()
+3.5. fig.show()
+Syntax:
+
+python
+Copy code
+fig.show()
+Explanation: Displays the figure in the browser or interactive environment.
+
+Example:
+
+python
+Copy code
+fig = px.bar(df, x='Genre', y='Price')
+fig.show()
