@@ -1,4 +1,4 @@
-from tkinter.font import names
+
 
 from fastapi import FastAPI
 from streamlit import title
@@ -19,8 +19,10 @@ def get_projects():
 
         description='this is fopsefhpoehf',
         languages=['PHP','JS'],
+        lead_developer=Developer(name="Blin", experience=2)
 
 
     )
     return {'projects':[shembullProjekt]}
+
 
