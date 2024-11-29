@@ -3,13 +3,12 @@ import sqlite3
 from typing import List
 
 from OnlineRecipeBook.models.category import CategoryCreate
-from lesson11.main import current_time
-from lesson23.connect import response
+
 from streamlit import status
 
-from models.category import CategoryBase, Category
+from OnlineRecipeBook.models.category import CategoryBase, Category
 
-from database import get_db_connection
+from OnlineRecipeBook.database import get_db_connection
 
 from fastapi import APIRouter, HTTPException
 
