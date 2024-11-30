@@ -1,15 +1,14 @@
-from fastapi import FASTAPI
-
-from OnlineRecipeBook.database import Database_Url
+from fastapi import FastAPI
 from routers import recipe, Category
 import os
-from dotenv import load_gotenv
+from dotenv import load_dotenv
 from database import get_db_connection
+import uvicorn
 
-load_gotenv()
+load_dotenv()
 
 Database_Url=os.getenv("Database_url")
-app=FASTAPI()
+app=FastAPI()
 app.include_router(recipe.router)
 app.include_router(Category.router)
 @app.on_event("startup")

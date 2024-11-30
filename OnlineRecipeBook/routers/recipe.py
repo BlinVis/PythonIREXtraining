@@ -5,7 +5,7 @@ from OnlineRecipeBook.database import get_db_connection
 from fastapi import APIRouter, HTTPException
 from typing import List
 
-from lesson23.connect import response
+
 
 router=APIRouter()
 
@@ -31,7 +31,7 @@ def get_recipes(cuisine: str = None,difficulty:str=None):
         params.append(difficulty)
 
     cursor.execute(query,params)
-    recipes=cursor.fetchall()
+    Recipe=cursor.fetchall()
     conn.close()
     return [Recipe(
         id=row[0],

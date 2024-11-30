@@ -41,7 +41,7 @@ def get_categories():
     return category_list
 
 
-@router.post("/categories/", response_model=category)
+@router.post("/categories/", response_model=Category)
 def create_category(category: CategoryCreate):
     conn = get_db_connection()
     cursor = conn.cursor()
